@@ -21,7 +21,7 @@ import {
   updateItemCart,
 } from '../../reducers/user'
 
-function ItemCard({ item, total }) {
+function ItemCard({ item, total, withoutMargin = false }) {
   const [totalItems, setTotalItems] = useState(total || 0)
   const dispatch = useDispatch()
 
@@ -43,7 +43,7 @@ function ItemCard({ item, total }) {
     setTotalItems(total)
   }
   return (
-    <Item>
+    <Item withoutMargin>
       <ItemLink href={`/produto/${item.id}`}>
         <ImageContainer>
           <Image src={item.imageURL} />
@@ -130,6 +130,7 @@ function ItemCard({ item, total }) {
 ItemCard.propTypes = {
   item: PropTypes.object,
   total: PropTypes.number,
+  withoutMargin: PropTypes.bool,
 }
 
 export default ItemCard

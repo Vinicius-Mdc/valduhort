@@ -3,13 +3,13 @@ import styled from 'styled-components'
 export const Item = styled.div`
   list-style: none;
   max-width: 230px;
-  height: 380px;
+  height: 340px;
   box-shadow: 0px 0px 4px 2px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  margin: 5px 10px;
+  margin: ${(props) => (props.withoutMargin ? '4px' : '5px 10px')};
   @media (max-width: 464px) {
-    height: 350px;
+    height: 320px;
   }
 `
 
@@ -32,7 +32,7 @@ export const ImageContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
+  margin-top: 5px;
   object-fit: cover;
 `
 
@@ -49,7 +49,7 @@ export const Price = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 1.1rem;
-  line-height: 30px;
+  line-height: 1px;
 `
 
 export const Status = styled.p`

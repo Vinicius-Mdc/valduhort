@@ -23,7 +23,7 @@ import 'swiper/css/scrollbar'
 import 'swiper/css/autoplay'
 import ScrollItemsList from '../../components/ScrollItemsList'
 
-const items = [
+export const items = [
   {
     id: 1,
     imageURL:
