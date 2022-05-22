@@ -32,6 +32,7 @@ import {
 } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../reducers/user'
+import Home from '../../views/Home'
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false)
@@ -135,7 +136,7 @@ function Header() {
                 ></path>
               </svg>
             </SearchIcon>
-            <SearchIcon>
+            <HeaderIcon to="/">
               <svg
                 width="30"
                 height="30"
@@ -148,8 +149,8 @@ function Header() {
                   fill="white"
                 />
               </svg>
-            </SearchIcon>
-            <HeaderIcon hidden={showSearch}>
+            </HeaderIcon>
+            <HeaderIcon hidden={showSearch} to="/checkout">
               <svg
                 width="24"
                 height="23"

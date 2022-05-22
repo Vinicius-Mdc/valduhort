@@ -5,18 +5,23 @@ import store from './store'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
 import Products from './views/Products'
+import Checkout from './views/Checkout'
 import Header from './components/Header'
+import ScrollToTop from './utils/scroll'
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Header />
-        <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/" element={<Home />} />
-        </Routes>
+        <ScrollToTop>
+          <Header />
+          <Routes>
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/" element={<Home />} />
+          </Routes>
+        </ScrollToTop>
       </Router>
     </Provider>
   )

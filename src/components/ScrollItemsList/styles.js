@@ -1,8 +1,6 @@
 import styled from 'styled-components'
 
-export const Container = styled.div`
-  overflow-x: scroll;
-`
+export const Container = styled.div``
 
 export const CarouselContainer = styled.div`
   margin: 0 20px;

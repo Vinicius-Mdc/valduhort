@@ -244,12 +244,12 @@ export const HeaderRight = styled.div`
   }
 `
 
-export const HeaderIcon = styled.div`
+export const HeaderIcon = styled(Link)`
   display: flex;
   align-items: center;
   fill: white;
   margin: 0 10px;
-
+  text-decoration: none;
   &:hover {
     cursor: pointer;
     opacity: 0.85;
@@ -258,4 +258,5 @@ export const HeaderIcon = styled.div`
 
 export const CartTotal = styled.p`
   margin-left: 10px;
+  color: white;
 `
