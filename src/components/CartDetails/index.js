@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../reducers/user'
 import {
@@ -14,8 +14,7 @@ import {
   UpdateShipping,
 } from './styles'
 
-function CartDetails() {
-  const [shipping, setShipping] = useState(3.5)
+function CartDetails({ shipping, setShipping, setShowFinishCartModal }) {
   const cart = useSelector(selectCart)
 
   return (
@@ -72,7 +71,13 @@ function CartDetails() {
       <KeepShoppingButton to="/products">
         Continuar Comprando
       </KeepShoppingButton>
-      <FinishCartButton>Finalizar Compra</FinishCartButton>
+      <FinishCartButton
+        onClick={() => {
+          setShowFinishCartModal(true)
+        }}
+      >
+        Finalizar Compra
+      </FinishCartButton>
     </Container>
   )
 }

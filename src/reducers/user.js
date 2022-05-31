@@ -68,6 +68,11 @@ const userSlice = createSlice({
       newState.cart = newCart
       return newState
     },
+    clearCart: (state, action) => {
+      const newState = state
+      newState.cart = []
+      return newState
+    },
   },
 })
 
@@ -79,6 +84,7 @@ export const {
   addItemCart,
   updateItemCart,
   deleteItemCart,
+  clearCart,
 } = userSlice.actions
 
 export const selectToken = (state) => state.user.token
