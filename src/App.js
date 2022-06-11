@@ -14,7 +14,6 @@ function App() {
     <Provider store={store}>
       <Router>
         <ScrollToTop>
-          <Header />
           <Routes>
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<Login />} />

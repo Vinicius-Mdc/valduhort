@@ -22,6 +22,7 @@ import 'swiper/css/scrollbar'
 
 import 'swiper/css/autoplay'
 import ScrollItemsList from '../../components/ScrollItemsList'
+import Header from '../../components/Header'
 
 export const items = [
   {
@@ -76,7 +77,9 @@ export const items = [
 
 function Home() {
   return (
-    <Container>
+    <>
+      <Header />
+      <Container>
       <Wrapper>
         <SwiperContainer>
           <Swiper
@@ -153,6 +156,7 @@ function Home() {
         <ScrollItemsList title="Destaques" items={items} />
       </Wrapper>
     </Container>
+    </>
   )
 }
 

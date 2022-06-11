@@ -5,6 +5,7 @@ import {
   HeaderIcon,
   HeaderLeft,
   HeaderRight,
+  HeaderUserIconMobile,
   ItemIcon,
   ItemText,
   Logo,
@@ -94,7 +95,7 @@ function Header() {
                 </SearchButton>
               </Search>
             </SearchComponent>
-            <User>
+            <User to='/login'>
               <UserPhoto>
                 <svg
                   width="30"
@@ -136,7 +137,7 @@ function Header() {
                 ></path>
               </svg>
             </SearchIcon>
-            <HeaderIcon to="/">
+            <HeaderUserIconMobile to="/login">
               <svg
                 width="30"
                 height="30"
@@ -149,7 +150,7 @@ function Header() {
                   fill="white"
                 />
               </svg>
-            </HeaderIcon>
+            </HeaderUserIconMobile>
             <HeaderIcon hidden={showSearch} to="/checkout">
               <svg
                 width="24"

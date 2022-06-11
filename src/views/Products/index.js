@@ -1,5 +1,6 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
+import Header from '../../components/Header'
 import ItemCard from '../../components/ItemCard'
 import { selectCart } from '../../reducers/user'
 import { items } from '../Home'
@@ -22,6 +23,8 @@ import {
 function Products() {
   const cart = useSelector(selectCart)
   return (
+    <>
+    <Header />
     <Container>
       <ProductsOptions>
         <Line />
@@ -54,6 +57,7 @@ function Products() {
         })}
       </Results>
     </Container>
+    </>
   )
 }
 

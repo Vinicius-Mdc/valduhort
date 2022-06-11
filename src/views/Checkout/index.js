@@ -5,6 +5,7 @@ import CartDetails from '../../components/CartDetails'
 import CartDetailsMobile from '../../components/CartDetailsMobile'
 import CartTable from '../../components/CartTable'
 import CartTableMobile from '../../components/CartTableMobile'
+import Header from '../../components/Header'
 import ScrollItemsList from '../../components/ScrollItemsList'
 import { clearCart, selectCart } from '../../reducers/user'
 import { useWindowSize } from '../../utils/screenSizeListener'
@@ -61,7 +62,9 @@ function Checkout() {
     navigation('/')
   }
   return (
-    <Container>
+    <>
+      <Header />
+      <Container>
       <MyCartContainer>
         <Title>Minha Cesta</Title>
         <MyCart>
@@ -181,6 +184,7 @@ function Checkout() {
         </>
       )}
     </Container>
+    </>
   )
 }
 

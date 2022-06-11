@@ -213,9 +213,11 @@ export const SearchButton = styled.button`
   }
 `
 
-export const User = styled.a`
+export const User = styled(Link)`
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: #fff;
 
   &:hover {
     cursor: pointer;
@@ -259,4 +261,19 @@ export const HeaderIcon = styled(Link)`
 export const CartTotal = styled.p`
   margin-left: 10px;
   color: white;
+`
+
+export const HeaderUserIconMobile = styled(Link)`
+  display: none;
+  @media(max-width: 480px){
+    display: flex;
+  align-items: center;
+  fill: white;
+  margin: 0 10px;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
+  }
 `
