@@ -33,6 +33,7 @@ function App() {
           id: cookies.id,
         })
       )
+      setCookiesLoaded(true)
     }
   }, [])
 
