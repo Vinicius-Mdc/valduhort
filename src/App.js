@@ -8,6 +8,7 @@ import Products from './views/Products'
 import Checkout from './views/Checkout'
 import Header from './components/Header'
 import ScrollToTop from './utils/scroll'
+import Register from './views/Register'
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
           <Routes>
             <Route path="/checkout" element={<Checkout />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
             <Route path="/products" element={<Products />} />
             <Route path="/" element={<Home />} />
           </Routes>

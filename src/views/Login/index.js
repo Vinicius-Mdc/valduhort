@@ -15,7 +15,7 @@ function Login() {
         <Input value={email} onChange={(e) => {
           setError('')
           setEmail(e.target.value)
-        }} type={'email'} placeholder='Email' />
+        }} type={'text'} placeholder='Email' />
         <Input value={password} onChange={(e) => {
           setError('')
           setPassword(e.target.value)
@@ -26,7 +26,7 @@ function Login() {
         }}>Entrar</Button>
         <ErrorText>{error}</ErrorText>
         <Text>
-          Não possui cadastro? <SignUpLink to='/signUp'>Cadastre-se</SignUpLink>
+          Não possui cadastro? <SignUpLink to='/register'>Cadastre-se</SignUpLink>
         </Text>
       </LoginWrapper>
     </Container>
