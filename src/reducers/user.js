@@ -4,6 +4,7 @@ const initialState = {
   token: null,
   id: null,
   name: null,
+  email: null,
   cart: [],
 }
 
@@ -15,22 +16,24 @@ const userSlice = createSlice({
       const newState = state
       newState.token = action.payload.token
       newState.id = action.payload.id
-      newState.name = action.payload.nome
-      newState.cart = action.payload.cart
+      newState.name = action.payload.name
+      newState.email = action.payload.email
+      newState.cart = action.payload.cart || state.cart
+
       return newState
     },
     userLogout: (state) => {
       const newState = state
       newState.token = null
       newState.id = null
-      newState.nome = null
+      newState.name = null
       newState.cart = []
       return newState
     },
     setUserInfo: (state, action) => {
       const newState = state
       newState.id = action.payload.id
-      newState.name = action.payload.nome
+      newState.name = action.payload.name
       newState.cart = action.payload.cart
       return newState
     },
@@ -89,7 +92,8 @@ export const {
 
 export const selectToken = (state) => state.user.token
 export const selectId = (state) => state.user.id
-export const selectName = (state) => state.user.nome
+export const selectName = (state) => state.user.name
+export const selectEmail = (state) => state.user.email
 export const selectCart = (state) => state.user.cart
 
 export default userSlice.reducer

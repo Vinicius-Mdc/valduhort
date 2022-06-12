@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { userLogin } from '../../reducers/user'
 import { Button, Container, ErrorText, Input, RegisterWrapper, Logo, SignInLink, Text, InputErrorText } from './styles'
 
 function Register() {
@@ -12,6 +14,7 @@ function Register() {
   const [confirmPassword, setConfirmPassword] = useState('')
   const [confirmPasswordError, setConfirmPasswordError] = useState('')
   const [error, setError] = useState('')
+  const dispatch = useDispatch()
   const navigation = useNavigate()
 
   const handleRegister = () => {
@@ -31,6 +34,9 @@ function Register() {
       setConfirmPasswordError('Senhas não conferem')
       return
     }
+    dispatch(userLogin({
+      name,email, id: '123', token: '1234567890'
+    }))
     navigation('/')
 
   }

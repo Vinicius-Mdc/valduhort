@@ -218,6 +218,7 @@ export const User = styled(Link)`
   align-items: center;
   text-decoration: none;
   color: #fff;
+  pointer-events: ${props => props.enabled ? 'inherit' : 'none'};
 
   &:hover {
     cursor: pointer;

@@ -32,13 +32,14 @@ import {
   AiOutlineSearch,
 } from 'react-icons/ai'
 import { useSelector } from 'react-redux'
-import { selectCart } from '../../reducers/user'
+import { selectCart, selectName } from '../../reducers/user'
 import Home from '../../views/Home'
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false)
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [searchText, setSearchText] = useState('')
+  const name = useSelector(selectName)
   const cart = useSelector(selectCart)
 
   return (
@@ -95,7 +96,7 @@ function Header() {
                 </SearchButton>
               </Search>
             </SearchComponent>
-            <User to='/login'>
+            <User enabled={name === null} to='/login'>
               <UserPhoto>
                 <svg
                   width="30"
@@ -111,7 +112,7 @@ function Header() {
                 </svg>
               </UserPhoto>
               <UserAuthenticateText>
-                Faça Login ou Cadastre-se
+                {name ? `Bem vindo ${name.split(' ')[0]}!` : 'Faça Login ou Cadastre-se'}
               </UserAuthenticateText>
             </User>
           </HeaderLeft>
