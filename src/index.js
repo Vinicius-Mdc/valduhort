@@ -4,10 +4,17 @@ import './index.css'
 import App from './App'
 import 'swiper/css/bundle'
 import reportWebVitals from './reportWebVitals'
+import { CookiesProvider } from 'react-cookie'
+import { Provider } from 'react-redux'
+import store from './store'
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <CookiesProvider>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </CookiesProvider>
   </React.StrictMode>,
   document.getElementById('root')
 )
