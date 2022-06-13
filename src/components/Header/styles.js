@@ -218,7 +218,7 @@ export const User = styled(Link)`
   align-items: center;
   text-decoration: none;
   color: #fff;
-  pointer-events: ${props => props.enabled ? 'inherit' : 'none'};
+  pointer-events: ${(props) => (props.enabled ? 'inherit' : 'none')};
 
   &:hover {
     cursor: pointer;
@@ -259,6 +259,21 @@ export const HeaderIcon = styled(Link)`
   }
 `
 
+export const HeaderIconExit = styled.button`
+  display: ${(props) => (props.hidden ? 'none' : 'flex')};
+  align-items: center;
+  fill: white;
+  margin: 0 10px;
+  text-decoration: none;
+  border: none;
+  background: transparent;
+  margin-top: 3px;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.85;
+  }
+`
+
 export const CartTotal = styled.p`
   margin-left: 10px;
   color: white;
@@ -266,15 +281,15 @@ export const CartTotal = styled.p`
 
 export const HeaderUserIconMobile = styled(Link)`
   display: none;
-  @media(max-width: 480px){
-    display: flex;
-  align-items: center;
-  fill: white;
-  margin: 0 10px;
-  text-decoration: none;
-  &:hover {
-    cursor: pointer;
-    opacity: 0.85;
-  }
+  @media (max-width: 480px) {
+    display: ${(props) => (props.hidden ? 'none' : 'flex')};
+    align-items: center;
+    fill: white;
+    margin: 0 10px;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      opacity: 0.85;
+    }
   }
 `

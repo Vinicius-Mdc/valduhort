@@ -15,16 +15,23 @@ import Checkout from './views/Checkout'
 import Header from './components/Header'
 import ScrollToTop from './utils/scroll'
 import Register from './views/Register'
-import { selectToken, userLogin } from './reducers/user'
+import { selectCart, selectToken, setCart, userLogin } from './reducers/user'
 
 function App() {
-  const [cookiesLoaded, setCookiesLoaded] = useState(false)
   const [cookies, setCookie] = useCookies(['user'])
+  const [hasUpdatedCart, setHasUpdatedCart] = useState(false)
+  const cart = useSelector(selectCart)
   const token = useSelector(selectToken)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!cookiesLoaded && !token && cookies.token) {
+    if (!token && hasUpdatedCart) {
+      localStorage.setItem('cart', JSON.stringify(cart))
+    }
+  }, [cart])
+
+  useEffect(() => {
+    if (!token && cookies.token) {
       dispatch(
         userLogin({
           name: cookies.name || '',
@@ -33,7 +40,14 @@ function App() {
           id: cookies.id,
         })
       )
-      setCookiesLoaded(true)
+    }
+    if (!hasUpdatedCart && !cookies.token) {
+      setHasUpdatedCart(true)
+      const cartString = localStorage.getItem('cart')
+      if (cartString) {
+        const cart = JSON.parse(cartString)
+        dispatch(setCart({ cart }))
+      }
     }
   }, [])
 

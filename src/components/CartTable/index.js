@@ -18,12 +18,19 @@ import {
   TableTitleRow,
   TotalItems,
 } from './styles'
-import { useDispatch } from 'react-redux'
-import { deleteItemCart, updateItemCart } from '../../reducers/user'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  deleteItemCart,
+  selectCart,
+  selectToken,
+  updateItemCart,
+} from '../../reducers/user'
 import { useWindowSize } from '../../utils/screenSizeListener'
 
 function CartTable({ data }) {
   const titles = ['Produto', 'Preço', 'Quantidade', 'Total']
+  const cart = useSelector(selectCart)
+  const token = useSelector(selectToken)
   const dispatch = useDispatch()
   const size = useWindowSize()
   const updateItemTotal = (total, item) => {

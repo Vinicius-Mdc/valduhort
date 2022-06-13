@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   AddButton,
   Image,
@@ -18,11 +18,15 @@ import {
 import {
   addItemCart,
   deleteItemCart,
+  selectCart,
+  selectToken,
   updateItemCart,
 } from '../../reducers/user'
 
 function ItemCard({ item, total, withoutMargin = false }) {
   const dispatch = useDispatch()
+  const cart = useSelector(selectCart)
+  const token = useSelector(selectToken)
 
   const updateItemTotal = (total) => {
     if (total === 0) {

@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import {
   CartItem,
   CartItemImage,
@@ -15,10 +15,17 @@ import {
   RemoveButton,
   TotalItems,
 } from './styles'
-import { deleteItemCart, updateItemCart } from '../../reducers/user'
+import {
+  deleteItemCart,
+  selectCart,
+  selectToken,
+  updateItemCart,
+} from '../../reducers/user'
 
 function CartTableMobile({ data }) {
   const dispatch = useDispatch()
+  const token = useSelector(selectToken)
+  const cart = useSelector(selectCart)
   const updateItemTotal = (total, item) => {
     if (total === 0) {
       dispatch(

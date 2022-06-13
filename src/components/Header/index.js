@@ -1,8 +1,9 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   CartTotal,
   Container,
   HeaderIcon,
+  HeaderIconExit,
   HeaderLeft,
   HeaderRight,
   HeaderUserIconMobile,
@@ -31,16 +32,33 @@ import {
   AiOutlineHistory,
   AiOutlineSearch,
 } from 'react-icons/ai'
-import { useSelector } from 'react-redux'
-import { selectCart, selectName } from '../../reducers/user'
+import { useDispatch, useSelector } from 'react-redux'
+import {
+  selectCart,
+  selectName,
+  selectToken,
+  userLogout,
+} from '../../reducers/user'
 import Home from '../../views/Home'
+import { useCookies } from 'react-cookie'
 
 function Header() {
   const [showSearch, setShowSearch] = useState(false)
   const [showSearchResults, setShowSearchResults] = useState(false)
   const [searchText, setSearchText] = useState('')
+  const [cookies, setCookie, deleteCookie] = useCookies(['user'])
   const name = useSelector(selectName)
   const cart = useSelector(selectCart)
+  const token = useSelector(selectToken)
+  const dispatch = useDispatch()
+
+  const handleLogOut = () => {
+    dispatch(userLogout())
+    deleteCookie('name')
+    deleteCookie('id')
+    deleteCookie('token')
+    deleteCookie('email')
+  }
 
   return (
     <Container>
@@ -96,7 +114,7 @@ function Header() {
                 </SearchButton>
               </Search>
             </SearchComponent>
-            <User enabled={name === null} to='/login'>
+            <User enabled={name === null} to="/login">
               <UserPhoto>
                 <svg
                   width="30"
@@ -112,7 +130,9 @@ function Header() {
                 </svg>
               </UserPhoto>
               <UserAuthenticateText>
-                {name ? `Bem vindo ${name.split(' ')[0]}!` : 'Faça Login ou Cadastre-se'}
+                {name
+                  ? `Bem vindo ${name.split(' ')[0]}!`
+                  : 'Faça Login ou Cadastre-se'}
               </UserAuthenticateText>
             </User>
           </HeaderLeft>
@@ -138,7 +158,7 @@ function Header() {
                 ></path>
               </svg>
             </SearchIcon>
-            <HeaderUserIconMobile to="/login">
+            <HeaderUserIconMobile hidden={!!name} to="/login">
               <svg
                 width="30"
                 height="30"
@@ -172,6 +192,25 @@ function Header() {
                 {cart.reduce((prev, current) => prev + current.total, 0)}
               </CartTotal>
             </HeaderIcon>
+            <HeaderIconExit
+              onClick={() => {
+                handleLogOut()
+              }}
+              hidden={!name}
+            >
+              <svg
+                width="23"
+                height="23"
+                viewBox="0 0 23 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M18.4 15V12H10.7333V9H18.4V6L23 10.5L18.4 15ZM16.8667 13.5V19.5H9.2V24L0 19.5V0H16.8667V7.5H15.3333V1.5H3.06667L9.2 4.5V18H15.3333V13.5H16.8667Z"
+                  fill="white"
+                />
+              </svg>
+            </HeaderIconExit>
           </HeaderRight>
         </Wrapper>
       ) : (

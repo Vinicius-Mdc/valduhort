@@ -90,6 +90,10 @@ export const SeeProducts = styled(Link)`
   margin-top: 60px;
   text-align: center;
 
+  &:hover {
+    opacity: 0.8;
+  }
+
   @media (max-width: 767px) {
     margin-top: 20px;
   }

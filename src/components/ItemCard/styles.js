@@ -13,7 +13,7 @@ export const Item = styled.div`
   }
 `
 
-export const ItemLink = styled.a`
+export const ItemLink = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3px 15px;
