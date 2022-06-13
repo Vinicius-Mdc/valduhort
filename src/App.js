@@ -16,6 +16,7 @@ import Header from './components/Header'
 import ScrollToTop from './utils/scroll'
 import Register from './views/Register'
 import { selectCart, selectToken, setCart, userLogin } from './reducers/user'
+import ForgotPassword from './views/ForgotPassword'
 
 function App() {
   const [cookies, setCookie] = useCookies(['user'])
@@ -58,6 +59,7 @@ function App() {
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/forgotPassword" element={<ForgotPassword />} />
           <Route path="/products" element={<Products />} />
           <Route path="/" element={<Home />} />
         </Routes>
