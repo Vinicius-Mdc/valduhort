@@ -8,4 +8,3 @@ No diretório do projeto, execute no terminal:
 
 ### `yarn install`
 ### `yarn start`
->>>>>>> dev
