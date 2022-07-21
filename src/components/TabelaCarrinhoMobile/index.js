@@ -1,41 +1,24 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { useDispatch, useSelector } from 'react-redux'
+import { BotaoAtualizaTotalItens, BotaoRemover, ComponenteGerenciarItem, Container, ImagemItemCarrinho, ItemCarrinho, ItemCarrinhoCima, ItemCarrinhoDir, ItemCarrinhoEsq, Nome, Preco, TotalItens } from './styles'
 import {
-  CartItem,
-  CartItemImage,
-  CartItemLeft,
-  CartItemRight,
-  CartItemTop,
-  Container,
-  ItemManagerComponent,
-  ItemTotalManagerButton,
-  Name,
-  Price,
-  RemoveButton,
-  TotalItems,
-} from './styles'
-import {
-  deleteItemCart,
-  selectCart,
-  selectToken,
-  updateItemCart,
-} from '../../reducers/user'
+  atualizarItem,
+  removerItem,
+} from '../../reducers/usuario'
 
-function CartTableMobile({ data }) {
+function CartTableMobile({ dados }) {
   const dispatch = useDispatch()
-  const token = useSelector(selectToken)
-  const cart = useSelector(selectCart)
-  const updateItemTotal = (total, item) => {
+  const atualizaTotalItens = (total, item) => {
     if (total === 0) {
       dispatch(
-        deleteItemCart({
+        removerItem({
           id: item.id,
         })
       )
     } else {
       dispatch(
-        updateItemCart({
+        atualizarItem({
           ...item,
           total,
         })
@@ -45,28 +28,27 @@ function CartTableMobile({ data }) {
 
   return (
     <Container>
-      {data.map((cartItem) => (
-        <CartItem key={cartItem.id}>
-          <CartItemLeft to={`/${cartItem.id}`}>
-            <CartItemImage src={cartItem.imageURL} />
-          </CartItemLeft>
-          <CartItemRight>
-            <CartItemTop>
-              <Name>{cartItem.name}</Name>
-              <RemoveButton
+      {dados.map((item) => (
+        <ItemCarrinho key={item.id}>
+          <ItemCarrinhoEsq to={`/${item.id}`}>
+            <ImagemItemCarrinho src={item.foto} />
+          </ItemCarrinhoEsq>
+          <ItemCarrinhoDir>
+            <ItemCarrinhoCima>
+              <Nome>{item.nome}</Nome>
+              <BotaoRemover
                 onClick={() => {
-                  updateItemTotal(0, cartItem)
+                  atualizaTotalItens(0, item)
                 }}
               >
                 X
-              </RemoveButton>
-            </CartItemTop>
-            <Price>{`R$ ${cartItem.price.toFixed(2).replace('.', ',')}`}</Price>
-            <ItemManagerComponent>
-              <ItemTotalManagerButton
+              </BotaoRemover>
+            </ItemCarrinhoCima>
+            <Preco>{`R$ ${item.preco.toFixed(2).replace('.', ',')}`}</Preco>
+            <ComponenteGerenciarItem>
+              <BotaoAtualizaTotalItens
                 onClick={() => {
-                  console.log('-')
-                  updateItemTotal(cartItem.total - 1, cartItem)
+                  atualizaTotalItens(item.total - 1, item)
                 }}
               >
                 <svg
@@ -85,14 +67,13 @@ function CartTableMobile({ data }) {
                     fill="#828282"
                   />
                 </svg>
-              </ItemTotalManagerButton>
-              <TotalItems>{cartItem.total}</TotalItems>
-              <ItemTotalManagerButton
-                disabled={cartItem.total >= cartItem.available}
+              </BotaoAtualizaTotalItens>
+              <TotalItens>{item.total}</TotalItens>
+              <BotaoAtualizaTotalItens
+                disabled={item.total >= item.disponivel}
                 onClick={() => {
-                  console.log('+')
-                  if (cartItem.total + 1 <= cartItem.available) {
-                    updateItemTotal(cartItem.total + 1, cartItem)
+                  if (item.total + 1 <= item.disponivel) {
+                    atualizaTotalItens(item.total + 1, item)
                   }
                 }}
               >
@@ -108,10 +89,10 @@ function CartTableMobile({ data }) {
                     fill="#167B82"
                   />
                 </svg>
-              </ItemTotalManagerButton>
-            </ItemManagerComponent>
-          </CartItemRight>
-        </CartItem>
+              </BotaoAtualizaTotalItens>
+            </ComponenteGerenciarItem>
+          </ItemCarrinhoDir>
+        </ItemCarrinho>
       ))}
     </Container>
   )

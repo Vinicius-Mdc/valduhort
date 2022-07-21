@@ -13,12 +13,12 @@ export const Container = styled.div`
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
 `
-export const CartDetails = styled.div`
+export const DetalhesCarrinho = styled.div`
   margin-left: 20px;
   color: white;
 `
 
-export const TotalText = styled.p`
+export const TextoTotal = styled.p`
   font-weight: bold;
   font-size: 1.2rem;
   margin: 0;
@@ -30,7 +30,7 @@ export const Total = styled.p`
   margin: 0;
   margin-top: 8px;
 `
-export const FinishCart = styled.button`
+export const FinalizarCarrinho = styled.button`
   height: 40px;
   width: 150px;
   margin-right: 20px;

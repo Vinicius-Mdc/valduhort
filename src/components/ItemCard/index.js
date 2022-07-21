@@ -1,43 +1,26 @@
-import React, { useState } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
+import { BotaoAdicionar, BotaoAtualizaTotalItens, ComponenteGerenciarItem, ContainerImagem, DetalhesItem, Imagem, Item, LinkItem, NomeProduto, Preco, Status, TotalItens } from './styles'
 import {
-  AddButton,
-  Image,
-  ImageContainer,
-  Item,
-  ItemDetails,
-  ItemLink,
-  ItemManagerComponent,
-  ItemTotalManagerButton,
-  Price,
-  ProductName,
-  Status,
-  TotalItems,
-} from './styles'
-import {
-  addItemCart,
-  deleteItemCart,
-  selectCart,
-  selectToken,
-  updateItemCart,
-} from '../../reducers/user'
+  adicionarItem,
+  atualizarItem,
+  removerItem,
+} from '../../reducers/usuario'
 
 function ItemCard({ item, total, withoutMargin = false }) {
   const dispatch = useDispatch()
-  const cart = useSelector(selectCart)
-  const token = useSelector(selectToken)
 
-  const updateItemTotal = (total) => {
+  const atualizarTotalItens = (total) => {
     if (total === 0) {
       dispatch(
-        deleteItemCart({
+        removerItem({
           id: item.id,
         })
       )
     } else {
       dispatch(
-        updateItemCart({
+        atualizarItem({
           ...item,
           total,
         })
@@ -45,27 +28,27 @@ function ItemCard({ item, total, withoutMargin = false }) {
     }
   }
   return (
-    <Item withoutMargin>
-      <ItemLink href={`/produto/${item.id}`}>
-        <ImageContainer>
-          <Image src={item.imageURL} />
-        </ImageContainer>
-        <ProductName>{item.name}</ProductName>
-        <Status available={item.available}>
-          {item.available === 0
+    <Item>
+      <LinkItem>
+        <ContainerImagem>
+          <Imagem src={item.foto} />
+        </ContainerImagem>
+        <NomeProduto>{item.nome}</NomeProduto>
+        <Status disponivel={item.disponivel}>
+          {item.disponivel === 0
             ? 'Não disponível'
-            : item.available <= 3
+            : item.disponivel <= 3
             ? 'Últimas Unidades'
             : 'Disponível'}
         </Status>
-      </ItemLink>
-      <ItemDetails>
-        <Price>{`R$ ${item.price.toFixed(2).replace('.', ',')}`}</Price>
-        {item.available === 0 ? null : total && total !== 0 ? (
-          <ItemManagerComponent>
-            <ItemTotalManagerButton
+      </LinkItem>
+      <DetalhesItem>
+        <Preco>{`R$ ${item.preco.toFixed(2).replace('.', ',')}`}</Preco>
+        {item.disponivel === 0 ? null : total && total !== 0 ? (
+          <ComponenteGerenciarItem>
+            <BotaoAtualizaTotalItens
               onClick={() => {
-                updateItemTotal(total - 1)
+                atualizarTotalItens(total - 1)
               }}
             >
               <svg
@@ -84,13 +67,13 @@ function ItemCard({ item, total, withoutMargin = false }) {
                   fill="#828282"
                 />
               </svg>
-            </ItemTotalManagerButton>
-            <TotalItems>{total}</TotalItems>
-            <ItemTotalManagerButton
-              disabled={total >= item.available}
+            </BotaoAtualizaTotalItens>
+            <TotalItens>{total}</TotalItens>
+            <BotaoAtualizaTotalItens
+              disabled={total >= item.disponivel}
               onClick={() => {
-                if (total + 1 <= item.available) {
-                  updateItemTotal(total + 1)
+                if (total + 1 <= item.disponivel) {
+                  atualizarTotalItens(total + 1)
                 }
               }}
             >
@@ -106,13 +89,13 @@ function ItemCard({ item, total, withoutMargin = false }) {
                   fill={total >= item.available ? '#eee' : '#167B82'}
                 />
               </svg>
-            </ItemTotalManagerButton>
-          </ItemManagerComponent>
+            </BotaoAtualizaTotalItens>
+          </ComponenteGerenciarItem>
         ) : (
-          <AddButton
+          <BotaoAdicionar
             onClick={() => {
               dispatch(
-                addItemCart({
+                adicionarItem({
                   ...item,
                   total: 1,
                 })
@@ -120,9 +103,9 @@ function ItemCard({ item, total, withoutMargin = false }) {
             }}
           >
             Adicionar
-          </AddButton>
+          </BotaoAdicionar>
         )}
-      </ItemDetails>
+      </DetalhesItem>
     </Item>
   )
 }

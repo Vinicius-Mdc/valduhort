@@ -13,7 +13,7 @@ export const Item = styled.div`
   }
 `
 
-export const ItemLink = styled.div`
+export const LinkItem = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3px 15px;
@@ -21,14 +21,14 @@ export const ItemLink = styled.div`
   color: black;
 `
 
-export const ProductName = styled.p`
+export const NomeProduto = styled.p`
   font-weight: 400;
   font-size: 1rem;
   margin-bottom: 6px;
   height: 32px;
 `
 
-export const ImageContainer = styled.div`
+export const ContainerImagem = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,7 +36,7 @@ export const ImageContainer = styled.div`
   object-fit: cover;
 `
 
-export const Image = styled.img`
+export const Imagem = styled.img`
   max-width: 90%;
   height: 170px;
   align-self: center;
@@ -45,7 +45,7 @@ export const Image = styled.img`
   }
 `
 
-export const Price = styled.p`
+export const Preco = styled.p`
   font-style: normal;
   font-weight: 500;
   font-size: 1.1rem;
@@ -59,14 +59,14 @@ export const Status = styled.p`
   font-size: 0.75rem;
   margin-bottom: 6px;
   color: ${(props) =>
-    props.available === 0
+    props.disponivel === 0
       ? '#D70606'
-      : props.available <= 3
+      : props.disponivel <= 3
       ? '#F39200'
       : '#008b06'};
 `
 
-export const AddButton = styled.button`
+export const BotaoAdicionar = styled.button`
   width: 100%;
   background: #547da4;
   border-radius: 7px;
@@ -79,7 +79,7 @@ export const AddButton = styled.button`
   }
 `
 
-export const ItemManagerComponent = styled.div`
+export const ComponenteGerenciarItem = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -87,9 +87,9 @@ export const ItemManagerComponent = styled.div`
   height: 36px;
 `
 
-export const TotalItems = styled.p``
+export const TotalItens = styled.p``
 
-export const ItemDetails = styled.div`
+export const DetalhesItem = styled.div`
   display: flex;
   flex-direction: column;
   padding: 3px 15px;
@@ -97,7 +97,7 @@ export const ItemDetails = styled.div`
   color: black;
 `
 
-export const ItemTotalManagerButton = styled.button`
+export const BotaoAtualizaTotalItens = styled.button`
   border: none;
   background-color: transparent;
 `

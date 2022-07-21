@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export const Container = styled.div``
 
-export const CarouselContainer = styled.div`
+export const ContainerCarousel = styled.div`
   margin: 0 20px;
   @media (max-width: 464px) {
     margin: 0;
@@ -10,7 +10,7 @@ export const CarouselContainer = styled.div`
   }
 `
 
-export const Title = styled.p`
+export const Titulo = styled.p`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
@@ -22,6 +22,6 @@ export const Title = styled.p`
 
   color: #000000;
 `
-export const ItemList = styled.ul`
+export const ListaItens = styled.ul`
   font-size: large;
 `
