@@ -4,12 +4,12 @@ export const Container = styled.div`
   margin-left: 15px;
   margin-right: 15px;
 `
-export const ProductsOptions = styled.div``
-export const Line = styled.hr`
+export const OpcoesProdutos = styled.div``
+export const Linha = styled.hr`
   fill: gray;
   height: 1px;
 `
-export const ProductsOptionsContainer = styled.div`
+export const ContainerOpcoesProdutos = styled.div`
   display: flex;
   justify-content: space-between;
   margin: 15px 10px;
@@ -17,17 +17,17 @@ export const ProductsOptionsContainer = styled.div`
     flex-direction: column;
   }
 `
-export const ProductOptionsLeft = styled.div`
+export const OpcoesProdutosEsq = styled.div`
   display: flex;
   @media (max-width: 484px) {
     justify-content: space-between;
     margin-bottom: 10px;
   }
 `
-export const ProductOptionsRight = styled.div`
+export const OpcoesProdutosDir = styled.div`
   display: flex;
 `
-export const TotalResults = styled.div`
+export const TotalResultados = styled.div`
   padding: 5px 15px 5px 0;
   margin-right: 15px;
   border-right: 1px solid gray;
@@ -37,20 +37,20 @@ export const TotalResults = styled.div`
     margin-right: 0;
   }
 `
-export const ResultSelect = styled.select`
+export const SelectResultados = styled.select`
   @media (max-width: 484px) {
     padding: 7px 5px;
   }
 `
-export const ResultSelectionOption = styled.option``
-export const ResultSortSelect = styled.select`
+export const OpcaoSelectResultados = styled.option``
+export const SelectOrdenacao = styled.select`
   @media (max-width: 484px) {
     padding: 7px 5px;
   }
 `
-export const ResultSortOption = styled.option``
-export const Bold = styled.strong``
-export const Results = styled.div`
+export const OpcaoSelectOrdenacao = styled.option``
+export const Negrito = styled.strong``
+export const Resultados = styled.div`
   display: grid;
   width: 100%;
   grid-template-columns: repeat(5, 1fr);

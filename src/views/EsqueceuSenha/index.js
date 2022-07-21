@@ -1,28 +1,16 @@
 import React, { useState } from 'react'
-import { useCookies } from 'react-cookie'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { userLogin } from '../../reducers/user'
-import {
-  Button,
-  Container,
-  ErrorText,
-  Input,
-  RegisterWrapper,
-  Logo,
-  SignInLink,
-  Text,
-  InputErrorText,
-} from './styles'
+import { Botao, Container, ContainerRegistro, Input, Logo, TextoErro, TextoErroInput } from './styles'
 
 function ForgotPassword() {
   const [email, setEmail] = useState('')
   const [emailError, setEmailError] = useState('')
-  const [error, setError] = useState('')
+  const [erro, setErro] = useState('')
   const dispatch = useDispatch()
-  const navigation = useNavigate()
+  const navegacao = useNavigate()
 
-  const handleSendEmail = () => {
+  const enviaEmail = () => {
     if (email === '') {
       setEmailError('Email inválido')
       return
@@ -30,12 +18,12 @@ function ForgotPassword() {
     alert(
       'Um email foi enviado, verifique sua caixa de mensagens para prosseguir com a redefinição da senha'
     )
-    navigation('/login')
+    navegacao('/login')
   }
 
   return (
     <Container>
-      <RegisterWrapper>
+      <ContainerRegistro>
         <Logo>ValduHort</Logo>
 
         <Input
@@ -47,16 +35,16 @@ function ForgotPassword() {
           type={'email'}
           placeholder="Email"
         />
-        <InputErrorText>{emailError}</InputErrorText>
-        <Button
+        <TextoErroInput>{emailError}</TextoErroInput>
+        <Botao
           onClick={() => {
-            handleSendEmail()
+            enviaEmail()
           }}
         >
           Enviar
-        </Button>
-        {error !== '' && <ErrorText>{error}</ErrorText>}
-      </RegisterWrapper>
+        </Botao>
+        {erro !== '' && <TextoErro>{erro}</TextoErro>}
+      </ContainerRegistro>
     </Container>
   )
 }

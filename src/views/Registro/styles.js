@@ -19,7 +19,7 @@ export const Container = styled.div`
     justify-content: center;
   }
 `
-export const RegisterWrapper = styled.div`
+export const ContainerRegistro = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -50,11 +50,11 @@ border-radius: 10px;
 padding: 8px 15px;
 `
 
-export const SignInLink = styled(RouterLink)`
+export const LinkLogin = styled(RouterLink)`
 
 `
 
-export const Button = styled.button`
+export const Botao = styled.button`
 margin-top: 20px;
   background: #547da4;
   border: 1px solid #547da4;
@@ -76,19 +76,30 @@ margin-top: 20px;
     margin-top: 40px;
   }
 `
-export const Text = styled.p`
+export const Texto = styled.p`
   font-size: .9rem;
   margin-top: 0;
 `
-export const ErrorText = styled.p`
+export const TextoErro = styled.p`
   color: #D60000;
   font-size: .9rem;
 `
 
-export const InputErrorText = styled.p`
+export const TextoErroInput = styled.p`
   color: #D60000;
   font-size: .8rem;
   margin: 0;
   margin-left: 5px;
   margin-bottom: 5px;
+`
+
+export const SpinnerContainer = styled.div`
+ display: flex;
+align-items: center;
+justify-content: center;
+  font-weight: 400;
+  height: 1.2rem;
+  text-align: center;
+  padding: 7px 0;
+  
 `

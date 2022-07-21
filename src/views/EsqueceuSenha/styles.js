@@ -19,7 +19,7 @@ export const Container = styled.div`
     justify-content: center;
   }
 `
-export const RegisterWrapper = styled.div`
+export const ContainerRegistro = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -50,9 +50,9 @@ export const Input = styled.input`
   padding: 8px 15px;
 `
 
-export const SignInLink = styled(RouterLink)``
+export const LinkLogin = styled(RouterLink)``
 
-export const Button = styled.button`
+export const Botao = styled.button`
   margin-top: 20px;
   background: #547da4;
   border: 1px solid #547da4;
@@ -74,17 +74,17 @@ export const Button = styled.button`
     margin-top: 40px;
   }
 `
-export const Text = styled.p`
+export const Texto = styled.p`
   font-size: 0.9rem;
   margin-top: 0;
   margin-bottom: 0;
 `
-export const ErrorText = styled.p`
+export const TextoErro = styled.p`
   color: #d60000;
   font-size: 0.9rem;
 `
 
-export const InputErrorText = styled.p`
+export const TextoErroInput = styled.p`
   color: #d60000;
   font-size: 0.8rem;
   margin: 0;

@@ -1,32 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {
-  CartTotal,
-  Container,
-  HeaderIcon,
-  HeaderIconExit,
-  HeaderLeft,
-  HeaderRight,
-  HeaderUserIconMobile,
-  ItemIcon,
-  ItemText,
-  Logo,
-  ResponsiveSearchComponent,
-  ResultList,
-  ReturnButton,
-  Search,
-  SearchBar,
-  SearchBarComponent,
-  SearchButton,
-  SearchComponent,
-  SearchIcon,
-  SearchItem,
-  SearchResults,
-  SmallLogo,
-  User,
-  UserAuthenticateText,
-  UserPhoto,
-  Wrapper,
-} from './styles'
+import { BarraBusca, BotaoBusca, BotaoVoltar, Busca, ComponenteBarraBusca, ComponenteBusca, ComponenteBuscaResponsivo, Container, ContainerHeader, FotoUsuario, HeaderDir, HeaderEsq, IconeBusca, IconeHeader, IconeItem, IconeSairHeader, IconeUsuarioMobile, ItemBusca, ListaResultados, Logo, LogoMenor, ResultadosBusca, TextoAutenticacaoUsuario, TextoItem, TotalCarrinho, Usuario } from './styles'
 import {
   AiOutlineArrowLeft,
   AiOutlineHistory,
@@ -34,27 +7,26 @@ import {
 } from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  selectCart,
-  selectName,
+  logoutUsuario,
+  selectCarrinho,
+  selectNome,
   selectToken,
-  userLogout,
-} from '../../reducers/user'
-import Home from '../../views/Home'
+} from '../../reducers/usuario'
 import { useCookies } from 'react-cookie'
 
 function Header() {
-  const [showSearch, setShowSearch] = useState(false)
-  const [showSearchResults, setShowSearchResults] = useState(false)
-  const [searchText, setSearchText] = useState('')
+  const [mostrarBusca, setMostrarBusca] = useState(false)
+  const [mostrarResultadoBusca, setMostrarResultadoBusca] = useState(false)
+  const [textoBusca, setTextoBusca] = useState('')
   const [cookies, setCookie, deleteCookie] = useCookies(['user'])
-  const name = useSelector(selectName)
-  const cart = useSelector(selectCart)
+  const nome = useSelector(selectNome)
+  const carrinho = useSelector(selectCarrinho)
   const token = useSelector(selectToken)
   const dispatch = useDispatch()
 
-  const handleLogOut = () => {
-    dispatch(userLogout())
-    deleteCookie('name')
+  const logout = () => {
+    dispatch(logoutUsuario())
+    deleteCookie('nome')
     deleteCookie('id')
     deleteCookie('token')
     deleteCookie('email')
@@ -62,60 +34,60 @@ function Header() {
 
   return (
     <Container>
-      {!showSearch ? (
-        <Wrapper>
-          <HeaderLeft>
+      {!mostrarBusca ? (
+        <ContainerHeader>
+          <HeaderEsq>
             <Logo to="/">ValduHort</Logo>
-            <SmallLogo to="/">VH</SmallLogo>
-            <SearchComponent>
-              <Search showSearchResults={showSearchResults}>
-                <SearchBarComponent>
-                  <SearchBar
-                    showSearch={showSearch}
+            <LogoMenor to="/">VH</LogoMenor>
+            <ComponenteBusca>
+              <Busca mostrarResultadoBusca={mostrarResultadoBusca}>
+                <ComponenteBarraBusca>
+                  <BarraBusca
+                    mostrarBusca={mostrarBusca}
                     onKeyDown={(e) => {
                       if (e.key === 'Escape') {
-                        setShowSearchResults(false)
+                        setMostrarResultadoBusca(false)
                       }
                     }}
                     onClick={() => {
-                      setShowSearchResults(true)
+                      setMostrarResultadoBusca(true)
                     }}
                     onBlur={() => {
                       setTimeout(() => {
-                        setShowSearchResults(false)
+                        setMostrarResultadoBusca(false)
                       }, 200)
                     }}
                     onChange={(e) => {
-                      setSearchText(e.target.value)
+                      setTextoBusca(e.target.value)
                     }}
-                    value={searchText}
+                    value={textoBusca}
                   />
-                  {showSearchResults && (
-                    <SearchResults>
-                      <ResultList>
-                        <SearchItem onClick={() => setSearchText('Manjericão')}>
-                          <ItemIcon>
+                  {mostrarResultadoBusca && (
+                    <ResultadosBusca>
+                      <ListaResultados>
+                        <ItemBusca onClick={() => setTextoBusca('Manjericão')}>
+                          <IconeItem>
                             <AiOutlineHistory />
-                          </ItemIcon>
-                          <ItemText>Manjericão</ItemText>
-                        </SearchItem>
-                        <SearchItem onClick={() => setSearchText('Couve')}>
-                          <ItemIcon>
+                          </IconeItem>
+                          <TextoItem>Manjericão</TextoItem>
+                        </ItemBusca>
+                        <ItemBusca onClick={() => setTextoBusca('Couve')}>
+                          <IconeItem>
                             <AiOutlineHistory />
-                          </ItemIcon>
-                          <ItemText>Couve</ItemText>
-                        </SearchItem>
-                      </ResultList>
-                    </SearchResults>
+                          </IconeItem>
+                          <TextoItem>Couve</TextoItem>
+                        </ItemBusca>
+                      </ListaResultados>
+                    </ResultadosBusca>
                   )}
-                </SearchBarComponent>
-                <SearchButton>
+                </ComponenteBarraBusca>
+                <BotaoBusca>
                   <AiOutlineSearch />
-                </SearchButton>
-              </Search>
-            </SearchComponent>
-            <User enabled={name === null} to="/login">
-              <UserPhoto>
+                </BotaoBusca>
+              </Busca>
+            </ComponenteBusca>
+            <Usuario enabled={nome === null} to="/login">
+              <FotoUsuario>
                 <svg
                   width="30"
                   height="30"
@@ -128,18 +100,18 @@ function Header() {
                     fill="white"
                   />
                 </svg>
-              </UserPhoto>
-              <UserAuthenticateText>
-                {name
-                  ? `Bem vindo ${name.split(' ')[0]}!`
+              </FotoUsuario>
+              <TextoAutenticacaoUsuario>
+                {nome
+                  ? `Bem vindo ${nome.split(' ')[0]}!`
                   : 'Faça Login ou Cadastre-se'}
-              </UserAuthenticateText>
-            </User>
-          </HeaderLeft>
-          <HeaderRight>
-            <SearchIcon
+              </TextoAutenticacaoUsuario>
+            </Usuario>
+          </HeaderEsq>
+          <HeaderDir>
+            <IconeBusca
               onClick={() => {
-                setShowSearch(true)
+                setMostrarBusca(true)
               }}
             >
               <svg
@@ -157,8 +129,8 @@ function Header() {
                   d="M10.6002 12.0498C9.49758 12.8568 8.13777 13.3333 6.66667 13.3333C2.98477 13.3333 0 10.3486 0 6.66667C0 2.98477 2.98477 0 6.66667 0C10.3486 0 13.3333 2.98477 13.3333 6.66667C13.3333 8.15637 12.8447 9.53194 12.019 10.6419C12.0265 10.6489 12.0338 10.656 12.0411 10.6633L15.2935 13.9157C15.6841 14.3063 15.6841 14.9394 15.2935 15.33C14.903 15.7205 14.2699 15.7205 13.8793 15.33L10.6269 12.0775C10.6178 12.0684 10.6089 12.0592 10.6002 12.0498ZM11.3333 6.66667C11.3333 9.244 9.244 11.3333 6.66667 11.3333C4.08934 11.3333 2 9.244 2 6.66667C2 4.08934 4.08934 2 6.66667 2C9.244 2 11.3333 4.08934 11.3333 6.66667Z"
                 ></path>
               </svg>
-            </SearchIcon>
-            <HeaderUserIconMobile hidden={!!name} to="/login">
+            </IconeBusca>
+            <IconeUsuarioMobile hidden={!!nome} to="/login">
               <svg
                 width="30"
                 height="30"
@@ -171,8 +143,8 @@ function Header() {
                   fill="white"
                 />
               </svg>
-            </HeaderUserIconMobile>
-            <HeaderIcon hidden={showSearch} to="/checkout">
+            </IconeUsuarioMobile>
+            <IconeHeader hidden={mostrarBusca} to="/carrinho">
               <svg
                 width="24"
                 height="23"
@@ -188,15 +160,15 @@ function Header() {
                   fill="white"
                 />
               </svg>
-              <CartTotal>
-                {cart.reduce((prev, current) => prev + current.total, 0)}
-              </CartTotal>
-            </HeaderIcon>
-            <HeaderIconExit
+              <TotalCarrinho>
+                {carrinho?.reduce((anterior, atual) => anterior + atual.total, 0)}
+              </TotalCarrinho>
+            </IconeHeader>
+            <IconeSairHeader
               onClick={() => {
-                handleLogOut()
+                logout()
               }}
-              hidden={!name}
+              hidden={!nome}
             >
               <svg
                 width="23"
@@ -210,66 +182,60 @@ function Header() {
                   fill="white"
                 />
               </svg>
-            </HeaderIconExit>
-          </HeaderRight>
-        </Wrapper>
+            </IconeSairHeader>
+          </HeaderDir>
+        </ContainerHeader>
       ) : (
-        <ResponsiveSearchComponent showSearch={showSearch}>
-          <ReturnButton
+        <ComponenteBuscaResponsivo mostrarBusca={mostrarBusca}>
+          <BotaoVoltar
             onClick={() => {
-              setShowSearch(false)
+              setMostrarBusca(false)
             }}
           >
             <AiOutlineArrowLeft />
-          </ReturnButton>
-          <SearchComponent showSearch={showSearch}>
-            <Search showSearchResults={showSearchResults}>
-              <SearchBarComponent>
-                <SearchBar
-                  showSearch={showSearch}
+          </BotaoVoltar>
+          <ComponenteBusca mostrarBusca={mostrarBusca}>
+            <Busca mostrarResultadoBusca={mostrarResultadoBusca}>
+              <ComponenteBarraBusca>
+                <BarraBusca
+                  mostrarBusca={mostrarBusca}
                   onKeyDown={(e) => {
                     if (e.key === 'Escape') {
-                      setShowSearchResults(false)
+                      setMostrarResultadoBusca(false)
                     }
                   }}
                   onClick={() => {
-                    setShowSearchResults(true)
+                    setMostrarResultadoBusca(true)
                   }}
                   onBlur={() => {
                     setTimeout(() => {
-                      setShowSearchResults(false)
+                      setMostrarResultadoBusca(false)
                     }, 200)
                   }}
                   onChange={(e) => {
-                    setSearchText(e.target.value)
+                    setTextoBusca(e.target.value)
                   }}
-                  value={searchText}
+                  value={textoBusca}
                 />
-                {showSearchResults && (
-                  <SearchResults>
-                    <ResultList>
-                      <SearchItem onClick={() => setSearchText('Manjericão')}>
-                        <ItemIcon>
+                {mostrarResultadoBusca && (
+                  <ResultadosBusca>
+                    <ListaResultados>
+                      <ItemBusca onClick={() => setTextoBusca('Manjericão')}>
+                        <IconeItem>
                           <AiOutlineHistory />
-                        </ItemIcon>
-                        <ItemText>Manjericão</ItemText>
-                      </SearchItem>
-                      <SearchItem onClick={() => setSearchText('Couve')}>
-                        <ItemIcon>
-                          <AiOutlineHistory />
-                        </ItemIcon>
-                        <ItemText>Couve</ItemText>
-                      </SearchItem>
-                    </ResultList>
-                  </SearchResults>
+                        </IconeItem>
+                        <TextoItem>Manjericão</TextoItem>
+                      </ItemBusca>
+                    </ListaResultados>
+                  </ResultadosBusca>
                 )}
-              </SearchBarComponent>
-              <SearchButton>
+              </ComponenteBarraBusca>
+              <BotaoBusca>
                 <AiOutlineSearch />
-              </SearchButton>
-            </Search>
-          </SearchComponent>
-        </ResponsiveSearchComponent>
+              </BotaoBusca>
+            </Busca>
+          </ComponenteBusca>
+        </ComponenteBuscaResponsivo>
       )}
     </Container>
   )

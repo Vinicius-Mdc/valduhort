@@ -13,7 +13,7 @@ export const Container = styled.div`
   top: 0;
   z-index: 800;
 `
-export const Wrapper = styled.div`
+export const ContainerHeader = styled.div`
   padding: 12px 15px;
   width: 100%;
   height: 100%;
@@ -23,7 +23,7 @@ export const Wrapper = styled.div`
   align-items: center;
 `
 
-export const HeaderLeft = styled.div`
+export const HeaderEsq = styled.div`
   display: flex;
   align-items: center;
   width: 100%;
@@ -49,7 +49,7 @@ export const Logo = styled(Link)`
   }
 `
 
-export const SmallLogo = styled(Link)`
+export const LogoMenor = styled(Link)`
   font-family: 'Kristi';
   font-size: 40px;
   margin: 0;
@@ -66,7 +66,7 @@ export const SmallLogo = styled(Link)`
   }
 `
 
-export const Search = styled.div`
+export const Busca = styled.div`
   height: 35px;
   display: flex;
   align-items: center;
@@ -76,14 +76,14 @@ export const Search = styled.div`
   justify-content: center;
   border-radius: 12px 12px 0px 0px;
   background-color: ${(props) =>
-    props.showSearchResults ? '#fff' : 'transparent'};
+    props.mostrarResultadoBusca ? '#fff' : 'transparent'};
 
   @media (max-width: 767px) {
     margin: 0;
   }
 `
 
-export const SearchComponent = styled.div`
+export const ComponenteBusca = styled.div`
   display: flex;
   flex-direction: column;
   height: 35px;
@@ -95,15 +95,15 @@ export const SearchComponent = styled.div`
   position: relative;
 
   @media (max-width: 767px) {
-    display: ${(props) => (props.showSearch ? 'flex' : 'none')};
+    display: ${(props) => (props.mostrarBusca ? 'flex' : 'none')};
     margin: 0 20px 0 0;
   }
 `
-export const ResponsiveSearchComponent = styled.div`
+export const ComponenteBuscaResponsivo = styled.div`
   display: none;
 
   @media (max-width: 767px) {
-    display: ${(props) => (props.showSearch ? 'flex' : 'none')};
+    display: ${(props) => (props.mostrarBusca ? 'flex' : 'none')};
     width: 100%;
     height: 100%;
     align-items: center;
@@ -112,7 +112,7 @@ export const ResponsiveSearchComponent = styled.div`
   }
 `
 
-export const SearchResults = styled.div`
+export const ResultadosBusca = styled.div`
   position: absolute;
   top: 35px;
   width: 100%;
@@ -121,20 +121,20 @@ export const SearchResults = styled.div`
   background-color: white;
 `
 
-export const SearchBarComponent = styled.div`
+export const ComponenteBarraBusca = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
 `
 
-export const ResultList = styled.div`
+export const ListaResultados = styled.div`
   color: black;
   background-color: white;
   width: 100%;
 `
 
-export const SearchItem = styled.div`
+export const ItemBusca = styled.div`
   display: flex;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -146,13 +146,13 @@ export const SearchItem = styled.div`
   }
 `
 
-export const ItemIcon = styled.div`
+export const IconeItem = styled.div`
   margin-right: 12px;
 `
 
-export const ItemText = styled.div``
+export const TextoItem = styled.div``
 
-export const ReturnButton = styled.div`
+export const BotaoVoltar = styled.div`
   display: none;
   align-items: center;
   fill: white;
@@ -168,7 +168,7 @@ export const ReturnButton = styled.div`
   }
 `
 
-export const SearchIcon = styled.div`
+export const IconeBusca = styled.div`
   display: none;
   align-items: center;
   fill: white;
@@ -184,7 +184,7 @@ export const SearchIcon = styled.div`
   }
 `
 
-export const SearchBar = styled.input`
+export const BarraBusca = styled.input`
   height: 100%;
   padding: 0 12px;
   width: 100%;
@@ -197,7 +197,7 @@ export const SearchBar = styled.input`
   }
 `
 
-export const SearchButton = styled.button`
+export const BotaoBusca = styled.button`
   background: #547da4;
   height: 100%;
   margin: 0;
@@ -213,7 +213,7 @@ export const SearchButton = styled.button`
   }
 `
 
-export const User = styled(Link)`
+export const Usuario = styled(Link)`
   display: flex;
   align-items: center;
   text-decoration: none;
@@ -230,16 +230,16 @@ export const User = styled(Link)`
   }
 `
 
-export const UserPhoto = styled.div`
+export const FotoUsuario = styled.div`
   font-size: 40px;
   margin-right: 10px;
 `
 
-export const UserAuthenticateText = styled.p`
+export const TextoAutenticacaoUsuario = styled.p`
   width: 120px;
 `
 
-export const HeaderRight = styled.div`
+export const HeaderDir = styled.div`
   display: flex;
 
   @media (max-width: 767px) {
@@ -247,7 +247,7 @@ export const HeaderRight = styled.div`
   }
 `
 
-export const HeaderIcon = styled(Link)`
+export const IconeHeader = styled(Link)`
   display: flex;
   align-items: center;
   fill: white;
@@ -259,7 +259,7 @@ export const HeaderIcon = styled(Link)`
   }
 `
 
-export const HeaderIconExit = styled.button`
+export const IconeSairHeader = styled.button`
   display: ${(props) => (props.hidden ? 'none' : 'flex')};
   align-items: center;
   fill: white;
@@ -274,12 +274,12 @@ export const HeaderIconExit = styled.button`
   }
 `
 
-export const CartTotal = styled.p`
+export const TotalCarrinho = styled.p`
   margin-left: 10px;
   color: white;
 `
 
-export const HeaderUserIconMobile = styled(Link)`
+export const IconeUsuarioMobile = styled(Link)`
   display: none;
   @media (max-width: 480px) {
     display: ${(props) => (props.hidden ? 'none' : 'flex')};

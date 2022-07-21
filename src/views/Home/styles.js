@@ -5,18 +5,18 @@ export const Container = styled.div`
   font-family: Helvetica, Arial, sans-serif !important;
 `
 
-export const Wrapper = styled.div``
-export const SwiperContainer = styled.div``
-export const SwiperLink = styled.a`
+export const ContainerHome = styled.div``
+export const ContainerSwiper = styled.div``
+export const LinkSwiper = styled.a`
   width: 100vh;
 `
-export const SwiperImage = styled.img`
+export const ImagemSwiper = styled.img`
   width: 100%;
   max-height: 70vh;
   object-fit: fill;
 `
 
-export const StoreInfo = styled.div`
+export const InformacoesLoja = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -29,7 +29,7 @@ export const StoreInfo = styled.div`
   }
 `
 
-export const StoreIcons = styled.div`
+export const IconesLoja = styled.div`
   display: flex;
   padding: 0 20px;
 
@@ -38,7 +38,7 @@ export const StoreIcons = styled.div`
   }
 `
 
-export const StoreDetail = styled.div`
+export const DetalhesLoja = styled.div`
   text-align: center;
   width: 100%;
   margin: 0 12px;
@@ -49,7 +49,7 @@ export const StoreDetail = styled.div`
   }
 `
 
-export const Icon = styled.svg`
+export const Icone = styled.svg`
   width: auto;
   max-width: 135px;
   max-height: 135px;
@@ -60,7 +60,7 @@ export const Icon = styled.svg`
   }
 `
 
-export const IconText = styled.p`
+export const TextoIcone = styled.p`
   font-size: 1.1rem;
 
   @media (max-width: 767px) {
@@ -68,14 +68,14 @@ export const IconText = styled.p`
   }
 `
 
-export const SeeProductsWrapper = styled.div`
+export const ContainerVerProdutos = styled.div`
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 `
 
-export const SeeProducts = styled(Link)`
+export const VerProdutos = styled(Link)`
   margin: 0 20px;
   background-color: #167b82;
   padding: 20px 0;

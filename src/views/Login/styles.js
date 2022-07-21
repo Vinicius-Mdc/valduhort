@@ -19,7 +19,7 @@ export const Container = styled.div`
     justify-content: center;
   }
 `
-export const LoginWrapper = styled.div`
+export const ContainerLogin = styled.div`
   display: flex;
   flex: 1;
   flex-direction: column;
@@ -49,18 +49,21 @@ border: 1px solid #828282;
 border-radius: 10px;
 padding: 8px 15px;
 `
-export const ForgotPasswordLink = styled(RouterLink)`
+export const LinkEsqueceuSenha = styled(RouterLink)`
   align-self: flex-end;
   margin-bottom: 5px;
   font-size: .9rem;
 `
 
-export const SignUpLink = styled(RouterLink)`
+export const LinkRegistro = styled(RouterLink)`
 
 `
 
-export const Button = styled.button`
+export const Botao = styled.button`
 margin-top: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
   background: #547da4;
   border: 1px solid #547da4;
   border-radius: 7px;
@@ -81,12 +84,23 @@ margin-top: 20px;
     margin-top: 40px;
   }
 `
-export const Text = styled.p`
+export const Texto = styled.p`
   font-size: .9rem;
   margin-top: 0;
 `
 
-export const ErrorText = styled.p`
+export const TextoError = styled.p`
   color: #D60000;
   font-size: .9rem;
+`
+
+export const SpinnerContainer = styled.div`
+ display: flex;
+align-items: center;
+justify-content: center;
+  font-weight: 400;
+  height: 1.2rem;
+  text-align: center;
+  padding: 7px 0;
+  
 `

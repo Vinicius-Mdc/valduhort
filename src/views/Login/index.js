@@ -1,92 +1,98 @@
 import React, { useEffect, useState } from 'react'
+import {ClipLoader} from 'react-spinners'
 import { useCookies } from 'react-cookie'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { userLogin } from '../../reducers/user'
-import {
-  Button,
-  Container,
-  ErrorText,
-  ForgotPasswordLink,
-  Input,
-  LoginWrapper,
-  Logo,
-  SignUpLink,
-  Text,
-} from './styles'
+import { loginUsuario } from '../../reducers/usuario'
+import { login } from '../../services/authentication.service'
+import { Botao, Container, ContainerLogin, Input, LinkEsqueceuSenha, LinkRegistro, Logo, SpinnerContainer, Texto, TextoError } from './styles'
 
 function Login() {
   const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [error, setError] = useState('')
-  const [cookies, setCookie] = useCookies(['user'])
+  const [senha, setSenha] = useState('')
+  const [erro, setErro] = useState('')
+  const [loading, setLoading] = useState(false)
+  const [cookies, setCookie] = useCookies(['usuario'])
   const dispatch = useDispatch()
-  const navigation = useNavigate()
+  const navegacao = useNavigate()
 
-  const handleLogin = () => {
-    if (email === '' || password === '') {
-      setError('Dados inválidos')
+  const verificaLogin = async () => {
+    if (email === '' || senha === '') {
+      setErro('Dados inválidos')
       return
     }
-    dispatch(
-      userLogin({
-        name: 'Vinicius',
-        email,
-        token: '123',
-        id: '1234567890',
-      })
-    )
-    setCookie('name', 'Vinicius', { path: '/' })
-    setCookie('email', email, { path: '/' })
-    setCookie('token', '123', { path: '/' })
-    setCookie('id', '1234567890', { path: '/' })
-    navigation('/')
+    try{
+      setLoading(true)
+      const auth = await login(email, senha)
+      
+      dispatch(
+        loginUsuario({
+          nome: 'Vinicius',
+          email,
+          token: '123',
+          id: '1234567890',
+        })
+      )
+      setCookie('nome', auth.nome, { path: '/' })
+      setCookie('email', email, { path: '/' })
+      setCookie('token', auth.token, { path: '/' })
+      setCookie('id', auth.id, { path: '/' })
+      setLoading(false)
+      navegacao('/')
+    } catch(e){
+      setErro('Email ou senha inválida!')
+      setLoading(false)
+    }
   }
 
   useEffect(() => {
     if (cookies.id) {
-      navigation('/')
+      navegacao('/')
     }
   }, [])
 
   return (
     <Container>
-      <LoginWrapper>
+      <ContainerLogin>
         <Logo>ValduHort</Logo>
         <Input
           value={email}
           onChange={(e) => {
-            setError('')
+            setErro('')
             setEmail(e.target.value)
           }}
           type={'text'}
           placeholder="Email"
         />
         <Input
-          value={password}
+          value={senha}
           onChange={(e) => {
-            setError('')
-            setPassword(e.target.value)
+            setErro('')
+            setSenha(e.target.value)
           }}
           type={'password'}
           placeholder="Senha"
         />
-        <ForgotPasswordLink to="/forgotPassword">
+        <LinkEsqueceuSenha to="/esqueceuSenha">
           Esqueceu a senha?
-        </ForgotPasswordLink>
-        <Button
+        </LinkEsqueceuSenha>
+        <Botao
           onClick={() => {
-            handleLogin()
+            verificaLogin()
           }}
         >
-          Entrar
-        </Button>
-        <ErrorText>{error}</ErrorText>
-        <Text>
+          {loading ? (
+            <SpinnerContainer>
+              <ClipLoader color={'white'} loading={loading}/>
+            </SpinnerContainer>
+          ) : 'Entrar'} 
+        </Botao>
+        <TextoError>{erro}</TextoError>
+        <Texto>
           Não possui cadastro?{' '}
-          <SignUpLink to="/register">Cadastre-se</SignUpLink>
-        </Text>
-      </LoginWrapper>
+          <LinkRegistro to="/registro">Cadastre-se</LinkRegistro>
+        </Texto>
+      </ContainerLogin>
     </Container>
   )
 }

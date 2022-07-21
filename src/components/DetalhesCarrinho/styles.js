@@ -7,19 +7,19 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
 `
-export const Title = styled.p`
+export const Titulo = styled.p`
   font-weight: 600;
   font-size: 1.5rem;
   align-items: center;
   margin-top: 0;
   color: #000000;
 `
-export const TotalDetailsContainer = styled.div``
-export const TotalRow = styled.div`
+export const ContainerDetalhesCompra = styled.div``
+export const LinhaTotal = styled.div`
   display: flex;
   justify-content: space-between;
 `
-export const TotalRowText = styled.p`
+export const TextoLinhaTotal = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 1.2rem;
@@ -28,7 +28,7 @@ export const TotalRowText = styled.p`
   color: #000000;
   margin-top: 0;
 `
-export const TotalRowPrice = styled.p`
+export const PrecoLinhaTotal = styled.p`
   font-style: normal;
   font-weight: 400;
   font-size: 1.2rem;
@@ -38,10 +38,10 @@ export const TotalRowPrice = styled.p`
 
   color: #000000;
 `
-export const DivisionLine = styled.hr`
+export const LinhaDivisao = styled.hr`
   color: rgba(0, 0, 0, 0.25);
 `
-export const UpdateShipping = styled.button`
+export const AtualizaFrete = styled.button`
   border: none;
   color: #172d90;
   background-color: transparent;
@@ -52,7 +52,7 @@ export const UpdateShipping = styled.button`
     text-decoration: underline;
   }
 `
-export const KeepShoppingButton = styled(Link)`
+export const BotaoContinuarComprando = styled(Link)`
   background: #ffffff;
   border: 1px solid #547da4;
   border-radius: 7px;
@@ -70,7 +70,7 @@ export const KeepShoppingButton = styled(Link)`
     background-color: rgba(84, 125, 164, 0.6);
   }
 `
-export const FinishCartButton = styled.button`
+export const BotaoFinalizarCarrinho = styled.button`
   margin-top: 20px;
   background: #547da4;
   border: 1px solid #547da4;

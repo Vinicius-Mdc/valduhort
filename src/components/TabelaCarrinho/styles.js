@@ -1,33 +1,33 @@
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
-export const Table = styled.table`
+export const Tabela = styled.table`
   width: 90%;
   margin: 0 30px;
 `
-export const TableHead = styled.thead`
+export const TabelaCabeca = styled.thead`
   background-color: #e5e5e5;
   font-size: 0.9rem;
   height: 53px;
 `
 
-export const TableTitleRow = styled.tr``
-export const TableTitleColumn = styled.th``
-export const NoDataContainer = styled.div`
+export const LinhaTituloTabela = styled.tr``
+export const ColunaTituloTabela = styled.th``
+export const ContainerSemDados = styled.div`
   display: flex;
   flex: 1;
   margin: 0 30px;
 `
-export const NoDataText = styled.p``
-export const ProductsLink = styled(Link)``
-export const TableRow = styled.tr`
+export const TextoSemDados = styled.p``
+export const LinkProdutos = styled(Link)``
+export const LinhaTabela = styled.tr`
   width: 100%;
   text-align: center;
   vertical-align: middle;
   max-height: 100px;
 `
 
-export const TableColumn = styled.td`
+export const ColunaTabela = styled.td`
   padding: 0 10px;
   text-align: center;
   vertical-align: middle;
@@ -35,7 +35,7 @@ export const TableColumn = styled.td`
   width: ${(props) => (props.width ? props.width : '120px')};
 `
 
-export const TableColumnOption = styled.td`
+export const OpcaoColunaTabela = styled.td`
   padding: 0 10px;
   text-align: center;
   vertical-align: middle;
@@ -43,20 +43,20 @@ export const TableColumnOption = styled.td`
   width: 20px;
 `
 
-export const DeleteItem = styled.svg`
+export const RemoverItem = styled.svg`
   &:hover {
     cursor: pointer;
     opacity: 0.8;
   }
 `
 
-export const TableColumnImage = styled.img`
+export const ImagemColunaTabela = styled.img`
   max-width: 120px;
   max-height: 100px;
   margin-right: 20px;
 `
-export const TableColumnText = styled.p``
-export const TableColumnTotal = styled.div`
+export const TextoColunaTabela = styled.p``
+export const TotalColunaTabela = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -64,13 +64,13 @@ export const TableColumnTotal = styled.div`
   vertical-align: middle;
 `
 
-export const ItemTotalManagerButton = styled.button`
+export const BotaoAtualizaTotalItens = styled.button`
   border: none;
   background-color: transparent;
 `
-export const TotalItems = styled.p``
+export const TotalItens = styled.p``
 
-export const ItemManagerComponent = styled.div`
+export const ComponenteGerenciarItem = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;

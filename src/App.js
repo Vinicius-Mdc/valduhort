@@ -10,57 +10,56 @@ import {
 } from 'react-router-dom'
 import { Provider, useDispatch, useSelector } from 'react-redux'
 import { CookiesProvider, useCookies } from 'react-cookie'
-import Products from './views/Products'
-import Checkout from './views/Checkout'
-import Header from './components/Header'
+import Produtos from './views/Produtos'
+import Carrinho from './views/Carrinho'
 import ScrollToTop from './utils/scroll'
-import Register from './views/Register'
-import { selectCart, selectToken, setCart, userLogin } from './reducers/user'
-import ForgotPassword from './views/ForgotPassword'
+import Registro from './views/Registro'
+import { selectCarrinho, selectToken, setCarrinho, loginUsuario } from './reducers/usuario'
+import EsqueceuSenha from './views/EsqueceuSenha'
 
 function App() {
-  const [cookies, setCookie] = useCookies(['user'])
-  const [hasUpdatedCart, setHasUpdatedCart] = useState(false)
-  const cart = useSelector(selectCart)
+  const [cookies, setCookie] = useCookies(['usuario'])
+  const [carrinhoAtualizado, setCarrinhoAtualizado] = useState(false)
+  const carrinho = useSelector(selectCarrinho)
   const token = useSelector(selectToken)
   const dispatch = useDispatch()
 
   useEffect(() => {
-    if (!token && hasUpdatedCart) {
-      localStorage.setItem('cart', JSON.stringify(cart))
+    if (!token && carrinhoAtualizado) {
+      localStorage.setItem('carrinho', JSON.stringify(carrinho))
     }
-  }, [cart])
+  }, [carrinho, carrinhoAtualizado, token])
 
   useEffect(() => {
     if (!token && cookies.token) {
       dispatch(
-        userLogin({
-          name: cookies.name || '',
-          email: cookies.email || '',
+        loginUsuario({
+          nome: cookies.nome,
+          email: cookies.email,
           token: cookies.token,
           id: cookies.id,
         })
       )
     }
-    if (!hasUpdatedCart && !cookies.token) {
-      setHasUpdatedCart(true)
-      const cartString = localStorage.getItem('cart')
-      if (cartString) {
-        const cart = JSON.parse(cartString)
-        dispatch(setCart({ cart }))
+    if (!carrinhoAtualizado && !cookies.token) {
+      const carrinhoAnterior = localStorage.getItem('carrinho')
+      if (carrinhoAnterior) {
+        const carrinhoSalvo = JSON.parse(carrinhoAnterior)
+        dispatch(setCarrinho({ carrinho: carrinhoSalvo }))
       }
+      setCarrinhoAtualizado(true)
     }
-  }, [])
+  }, [cookies.email, cookies.id, cookies.nome, cookies.token, dispatch, carrinhoAtualizado, token])
 
   return (
     <Router>
       <ScrollToTop>
         <Routes>
-          <Route path="/checkout" element={<Checkout />} />
+          <Route path="/carrinho" element={<Carrinho />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/forgotPassword" element={<ForgotPassword />} />
-          <Route path="/products" element={<Products />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/esqueceuSenha" element={<EsqueceuSenha />} />
+          <Route path="/produtos" element={<Produtos />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </ScrollToTop>
